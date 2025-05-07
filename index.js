@@ -28,6 +28,13 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
+ app.get("/api/health", (req, res) => {
+   res.status(200).json({
+     status: "Server is running",
+     environment: process.env.NODE_ENV || "development",
+     timestamp: new Date().toISOString(),
+   });
+ }); 
 
 app.post("/api/register", async (req, res) => {
   try {
